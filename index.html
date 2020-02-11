@@ -88,102 +88,124 @@
             <!-- Game Squares -->
             <div class='game-square'>
               <div>
+                <div class="square-1"></div>
                 <div></div>
-                <div></div>
               </div>
             </div>
             <div class='game-square'>
                 <div>
-                    <div></div>
+                    <div class="square-2"></div>
                     <div></div>
                 </div>
             </div>
             <div class='game-square'>
                 <div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-            <div class='game-square'>
-                <div>
-                    <div></div>
+                    <div class="square-3"></div>
                     <div></div>
                 </div>
             </div>
             <div class='game-square'>
                 <div>
-                    <div></div>
+                    <div class="square-4"></div>
                     <div></div>
                 </div>
             </div>
             <div class='game-square'>
                 <div>
-                  <div></div>
-                  <div></div>
+                    <div class="square-5"></div>
+                    <div></div>
                 </div>
-              </div>
-              <div class='game-square'>
-                  <div>
-                      <div></div>
-                      <div></div>
-                  </div>
-              </div>
-              <div class='game-square'>
-                  <div>
-                      <div></div>
-                      <div></div>
-                  </div>
-              </div>
-              <div class='game-square'>
-                  <div>
-                      <div></div>
-                      <div></div>
-                  </div>
-              </div>
-              <div class='game-square'>
-                  <div>
-                      <div></div>
-                      <div></div>
-                  </div>
-              </div>
-              <div class='game-square'>
+            </div>
+            <div class='game-square'>
                 <div>
-                  <div></div>
+                  <div class="square-6"></div>
                   <div></div>
                 </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div></div>
-                      <div></div>
-                  </div>
-              </div>
-              <div class='game-square'>
-                  <div>
-                      <div></div>
+                      <div class="square-7"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div></div>
+                      <div class="square-8"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                   <div>
+                      <div class="square-9"></div>
                       <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div class="square-10"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                 <div>
-                    <div></div>
+                  <div class="square-11"></div>
+                  <div></div>
+                </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div class="square-12"></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div class="square-13"></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div class="square-14"></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div class="square-15"></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                <div>
+                    <div class="square-16"></div>
                     <div></div>
                 </div>
             </div>
         </div>
     </div>
     <button id='reset-button'>reset</button>
+    <footer>
+        <script>
+            // assigns our html button into a js var
+            var resetButton = document.getElementById("reset-button");
+
+            // names our squares
+            var colors = [];
+            for (var i = 0; i < 10; i++) {
+                colors.push('square-' + i);
+            }
+
+            // simulates our squares in java
+            //el reference to a DOM element. In our case a div.game-square.
+            function GameSquare(el, color) {
+                this.el = el;
+                this.isOpen = false;
+                this.isLocked = false;
+                // listens for click type events
+                this.el.addEventListener("click", this, false);
+            }
+        </script>
+    </footer>
 </body>
 </html>
