@@ -9,8 +9,8 @@
         .game-square {
             box-sizing: border-box;
             border: 1px solid #000;
-            width: 100px;
-            height: 100px;
+            width: 250px;
+            height: 250px;
             position: relative;
             overflow: hidden;
           }
@@ -74,12 +74,19 @@
 
         /* flexbox */
         #game {
-            width: 400px;
-            height: 400px;
+            width: 1000px;
+            height: 1000px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             border: 1px solid red;
+        }
+
+        /* button */
+        #reset-button{
+            width: 75px;
+            height: 32px;
+            font-size: large;
         }
     </style>
 </head>
@@ -217,6 +224,7 @@
                     }
                     this.isOpen = true;
                     this.el.classList.add('flip');
+                    checkGame(this);
                 }
             }
 
@@ -227,10 +235,33 @@
                 this.el.classList.remove('flip');
             }
 
-            // locks our cards in place
+            // locks our cards in place if colors clicked are the same
+            var firstSquare = null;
+
             GameSquare.prototype.lock = function() {
                 this.isLocked = true;
                 this.isOpen = true;
+            }
+
+            function checkGame(gameSquare) {
+                if (firstSquare === null) {
+                    firstSquare = gameSquare;
+                    return
+                }
+
+                if (firstSquare.color === gameSquare.color) {
+                    firstSquare.lock();
+                    gameSquare.lock();
+                } else {
+                    var a = firstSquare;
+                    var b = gameSquare;
+                    setTimeout(function() {
+                    a.reset();
+                    b.reset();
+                    firstSquare = null;
+                    }, 400);
+                }
+                firstSquare = null;
             }
 
             // assigns random colors
