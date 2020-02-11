@@ -88,97 +88,97 @@
             <!-- Game Squares -->
             <div class='game-square'>
               <div>
-                <div class="square-1"></div>
+                <div class="square-0"></div>
                 <div></div>
               </div>
             </div>
             <div class='game-square'>
                 <div>
-                    <div class="square-2"></div>
+                    <div class="square-0"></div>
                     <div></div>
                 </div>
             </div>
             <div class='game-square'>
                 <div>
-                    <div class="square-3"></div>
+                    <div class="square-#"></div>
                     <div></div>
                 </div>
             </div>
             <div class='game-square'>
                 <div>
-                    <div class="square-4"></div>
+                    <div class="square#"></div>
                     <div></div>
                 </div>
             </div>
             <div class='game-square'>
                 <div>
-                    <div class="square-5"></div>
+                    <div class="square#"></div>
                     <div></div>
                 </div>
             </div>
             <div class='game-square'>
                 <div>
-                  <div class="square-6"></div>
+                  <div class="square#"></div>
                   <div></div>
                 </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div class="square-7"></div>
+                      <div class="square#"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div class="square-8"></div>
+                      <div class="square#"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div class="square-9"></div>
+                      <div class="square#"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div class="square-10"></div>
+                      <div class="square#"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                 <div>
-                  <div class="square-11"></div>
+                  <div class="square-#"></div>
                   <div></div>
                 </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div class="square-12"></div>
+                      <div class="square-#"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div class="square-13"></div>
+                      <div class="square-#"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div class="square-14"></div>
+                      <div class="square-#"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                   <div>
-                      <div class="square-15"></div>
+                      <div class="square-#"></div>
                       <div></div>
                   </div>
               </div>
               <div class='game-square'>
                 <div>
-                    <div class="square-16"></div>
+                    <div class="square-#"></div>
                     <div></div>
                 </div>
             </div>
@@ -204,7 +204,44 @@
                 this.isLocked = false;
                 // listens for click type events
                 this.el.addEventListener("click", this, false);
+                this.setColor(color);
             }
+
+            // handles the event, accepting click event
+            GameSquare.prototype.handleEvent = function(e) {
+                switch (e.type) {
+                    case "click":
+                    if (this.isOpen || this.isLocked) {
+                        return;
+                    }
+                    this.isOpen = true;
+                    this.el.classList.add('flip');
+                }
+            }
+
+            // resets our game
+            GameSquare.prototype.reset = function() {
+                this.isOpen = false;
+                this.isLocked = false;
+                this.el.classList.remove('flip');
+            }
+
+            // locks our cards in place
+            GameSquare.prototype.lock = function() {
+                this.isLocked = true;
+                this.isOpen = true;
+            }
+
+            // deligates colors
+            GameSquare.prototype.setColor = function(color) {
+                this.el.children[0].children[1].classList.remove(this.color);
+                this.color = color;
+                this.el.children[0].children[1].classList.add(color);
+            }
+            // explination ^^
+            /*this.el : Is the game square div.
+            this.el.children[0] : the game square's child, the "drawer" div.
+            this.el.children[0].children[1] : the second child of the drawer div, this should be the color square.*/
         </script>
     </footer>
 </body>
