@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consentration</title>
+    <style>
+        /* creates our game squares */
+        .game-square {
+            box-sizing: border-box;
+            border: 1px solid #000;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+          }
+
+        /*  "Drawer" .game-square > div */
+        .game-square > div {
+        width: 100%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        }
+
+        /* default color */
+        .game-square > div > div {
+            height: 50%;
+        }
+
+        /* gives our firts square color */
+        .game-square > div > div:first-child {
+            background-color: gray;
+        }
+
+        /* reveals the second square */
+        .flip > div {
+            top: -100%;
+        }
+
+        /* our colors */
+        .square-0 {
+            background-color: aqua;
+        }
+
+        .square-1 {
+            background-color: bisque;
+        }
+
+        .square-2 {
+            background-color: blue;
+        }
+
+        .square-3 {
+            background-color: blueviolet;
+        }
+
+        .square-4 {
+            background-color: brown;
+        }
+
+        .square-5 {
+            background-color: cadetblue;
+        }
+
+        .square-6 {
+            background-color: chartreuse;
+        }
+
+        .square-7 {
+            background-color: chocolate;
+        }
+
+        /* flexbox */
+        #game {
+            width: 400px;
+            height: 400px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div id='game'>
+            <!-- Game Squares -->
+            <div class='game-square'>
+              <div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+            <div class='game-square'>
+                <div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class='game-square'>
+                <div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class='game-square'>
+                <div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class='game-square'>
+                <div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class='game-square'>
+                <div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                <div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                  <div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div class='game-square'>
+                <div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id='reset-button'>reset</button>
+</body>
+</html>
