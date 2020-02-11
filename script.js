@@ -27,7 +27,7 @@ GameSquare.prototype.handleEvent = function(e) {
         }
         this.isOpen = true;
         this.el.classList.add('flip');
-        checkGame(this);
+        // checkGame(this);
     }
 }
 
@@ -37,6 +37,25 @@ GameSquare.prototype.reset = function() {
     this.isLocked = false;
     this.el.classList.remove('flip');
 }
+
+// locks our cards in place if colors clicked are the same
+GameSquare.prototype.lock = function() {
+    this.isLocked = true;
+    this.isOpen = true;
+}
+
+// assigns random color
+/* this.el : Is the game square div.
+this.el.children[0] : the game square's child, the "drawer" div.
+this.el.children[0].children[1] : the second child of the drawer div, this should be the color square.*/
+GameSquare.prototype.setColor = function(color) {
+    this.el.children[0].children[1].classList.remove(this.color);
+    this.color = color;
+    this.el.children[0].children[1].classList.add(color);
+}
+
+functionalities
+var firstSquare = null;
 
 function randomizeColors() {
     var randomColors = getSomeColors();
@@ -55,12 +74,18 @@ function clearGame() {
     }, 500);
 }
 
-// locks our cards in place if colors clicked are the same
-var firstSquare = null;
+function getSomeColors() {
+    var colorscopy = colors.slice();
+    var randomColors = [];
+    for (var i = 0; i < 8; i++) {
+        var index = random(colorscopy.length);
+        randomColors.push(colorscopy.splice(index, 1)[0]);
+    }
+    return randomColors.concat(randomColors.slice());
+}
 
-GameSquare.prototype.lock = function() {
-    this.isLocked = true;
-    this.isOpen = true;
+function random(n) {
+    return Math.floor(Math.random() * n);
 }
 
 function checkGame(gameSquare) {
@@ -82,30 +107,6 @@ function checkGame(gameSquare) {
         }, 400);
     }
     firstSquare = null;
-}
-
-// assigns random colors
-function random(n) {
-    return Math.floor(Math.random() * n);
-}
-
-/* this.el : Is the game square div.
-this.el.children[0] : the game square's child, the "drawer" div.
-this.el.children[0].children[1] : the second child of the drawer div, this should be the color square.*/
-GameSquare.prototype.setColor = function(color) {
-    this.el.children[0].children[1].classList.remove(this.color);
-    this.color = color;
-    this.el.children[0].children[1].classList.add(color);
-}
-
-function getSomeColors() {
-    var colorscopy = colors.slice();
-    var randomColors = [];
-    for (var i = 0; i < 8; i++) {
-        var index = random(colorscopy.length);
-        randomColors.push(colorscopy.splice(index, 1)[0]);
-    }
-    return randomColors.concat(randomColors.slice());
 }
 
 //the game
