@@ -21,6 +21,7 @@
         height: 200%;
         position: absolute;
         top: 0;
+        transition: 400ms;
         }
 
         /* default color */
@@ -242,6 +243,17 @@
             /*this.el : Is the game square div.
             this.el.children[0] : the game square's child, the "drawer" div.
             this.el.children[0].children[1] : the second child of the drawer div, this should be the color square.*/
+
+            //the game
+            var gameSquares = [];
+            function setupGame() {
+                var array = document.getElementsByClassName("game-square");
+                for (var i = 0; i < array.length; i++) {
+                    gameSquares.push(new GameSquare(array[i], colors[0]));
+                }
+            }
+
+            setupGame();
         </script>
     </footer>
 </body>
