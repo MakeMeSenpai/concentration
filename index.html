@@ -235,6 +235,23 @@
                 this.el.classList.remove('flip');
             }
 
+            function randomizeColors() {
+                var randomColors = getSomeColors();
+                gameSquares.forEach(function(gameSquare) {
+                    var color = randomColors.splice(random(randomColors.length), 1)[0];
+                    gameSquare.setColor(color);
+                });
+            }
+
+            function clearGame() {
+                gameSquares.forEach(function(gameSquare) {
+                    gameSquare.reset();
+                });
+                setTimeout(function() {
+                    randomizeColors();
+                }, 500);
+            }
+
             // locks our cards in place if colors clicked are the same
             var firstSquare = null;
 
