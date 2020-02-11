@@ -233,23 +233,39 @@
                 this.isOpen = true;
             }
 
-            // deligates colors
+            // assigns random colors
+            function random(n) {
+                return Math.floor(Math.random() * n);
+            }
+
+            /* this.el : Is the game square div.
+            this.el.children[0] : the game square's child, the "drawer" div.
+            this.el.children[0].children[1] : the second child of the drawer div, this should be the color square.*/
             GameSquare.prototype.setColor = function(color) {
                 this.el.children[0].children[1].classList.remove(this.color);
                 this.color = color;
                 this.el.children[0].children[1].classList.add(color);
             }
-            // explination ^^
-            /*this.el : Is the game square div.
-            this.el.children[0] : the game square's child, the "drawer" div.
-            this.el.children[0].children[1] : the second child of the drawer div, this should be the color square.*/
+
+            function getSomeColors() {
+                var colorscopy = colors.slice();
+                var randomColors = [];
+                for (var i = 0; i < 8; i++) {
+                    var index = random(colorscopy.length);
+                    randomColors.push(colorscopy.splice(index, 1)[0]);
+                }
+                return randomColors.concat(randomColors.slice());
+            }
 
             //the game
-            var gameSquares = [];
             function setupGame() {
                 var array = document.getElementsByClassName("game-square");
-                for (var i = 0; i < array.length; i++) {
-                    gameSquares.push(new GameSquare(array[i], colors[0]));
+                var randomColors = getSomeColors();             // Get an array of 8 random color pairs
+                for (var i = 0; i < array.length; i++) {  
+                    var index = random(randomColors.length);      // Get a random index
+                    var color = randomColors.splice(index, 1)[0]; // Get the color at that index
+                    // Use that color to initialize the GameSquare
+                    gameSquares.push(new GameSquare(array[i], color));
                 }
             }
 
