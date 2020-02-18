@@ -14,19 +14,35 @@ function GameSquare(el, color) {
     this.isOpen = false;
     this.isLocked = false;
     // listens for click type events
-    this.el.addEventListener("click", this, false);
+    this.el.addEventListener("click", this);
     this.setColor(color);
 }
+
+let openSquare
 
 // handles the event, accepting click event
 GameSquare.prototype.handleEvent = function(e) {
     switch (e.type) {
         case "click":
-        if (this.isOpen || this.isLocked) {
+        if (this.isLocked) {
             return;
-        }
+        } if(openSquare) {
+            if(openSquare.color === this.color) {
+                openSquare.el.classList.add('flip');
+                openSquare.isOpen = true
+                // openSquare.isLocked = true
+                this.isLocked = true
+
+            } else {
+                openSquare.reset()
+                this.reset()
+            }
+            openSquare = null
+        } else {
         this.isOpen = true;
         this.el.classList.add('flip');
+        openSquare = this
+        }
         // checkGame(this);
     }
 }
@@ -54,8 +70,9 @@ GameSquare.prototype.setColor = function(color) {
     this.el.children[0].children[1].classList.add(color);
 }
 
-functionalities
+// functionalities
 var firstSquare = null;
+const gameSquares = []
 
 function randomizeColors() {
     var randomColors = getSomeColors();
