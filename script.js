@@ -28,14 +28,23 @@ GameSquare.prototype.handleEvent = function(e) {
             return;
         } if(openSquare) {
             if(openSquare.color === this.color) {
-                openSquare.el.classList.add('flip');
-                openSquare.isOpen = true
-                // openSquare.isLocked = true
+                // We need to set the current square to be flipped so it shows up. Then lock both
+                this.el.classList.add('flip');
+                this.isOpen = true
+                openSquare.isLocked = true
                 this.isLocked = true
 
             } else {
-                openSquare.reset()
-                this.reset()
+                // flip it over for just a second
+                this.el.classList.add("flip")
+                // openSquare gets reset before the timeout ends, so we need to save the openSquare so we know what to flip back
+                const oldSquare = openSquare
+                // then after 1 second, flip them both back over
+                window.setTimeout(function () {
+                    oldSquare.reset()
+                    this.reset()
+                }.bind(this) /* .bind just gives us access to the `this` keyword used in the line above */, 1000) // The 1000 is how many miliseconds before the function gets ran
+                
             }
             openSquare = null
         } else {
